@@ -68,4 +68,12 @@ dependencies {
     //Hilt
     implementation "com.google.dagger:hilt-android:2.28-alpha"
     kapt "com.google.dagger:hilt-android-compiler:2.28-alpha"
+
+    //Paging
+    def paging_version = "3.0.0-alpha11"
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+
+    //Chucker
+    debugImplementation "com.github.chuckerteam.chucker:library:3.4.0"
+    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:3.4.0"
 }

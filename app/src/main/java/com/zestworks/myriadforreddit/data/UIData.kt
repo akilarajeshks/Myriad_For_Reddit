@@ -6,7 +6,7 @@ data class UIData(
     val articleID : String,
     val title : String,
     val thumbnail: String,
-    val urlOverriddenByDest: String,
+    val urlOverriddenByDest: String?,
     //post content below title.
     val selfText:String
 )

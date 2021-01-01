@@ -7,11 +7,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.zestworks.myriadforreddit.R
-import com.zestworks.myriadforreddit.data.UIData
+import com.zestworks.myriadforreddit.data.listingMain.ListingMainUIData
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.collectLatest
@@ -24,7 +25,23 @@ class ListingMainFragment : Fragment() {
     @Inject
     lateinit var listingViewModel: ListingViewModel
 
-    private val pagingDataAdapter = ListingBestAdapter(ListDiff)
+    private val pagingDataAdapter = ListingBestAdapter(ListDiff) {
+        //navigate here
+        when (it) {
+            Click.SUBREDDIT -> {
+                val actionListingMainFragmentToSubredditListingFragment =
+                    ListingMainFragmentDirections.actionListingMainFragmentToSubredditListingFragment(
+                        it.link
+                    )
+                findNavController().navigate(actionListingMainFragmentToSubredditListingFragment)
+            }
+            Click.POST -> {
+                val actionListingMainFragmentToPostDetailFragment =
+                    ListingMainFragmentDirections.actionListingMainFragmentToPostDetailFragment(it.link.drop(1))
+                findNavController().navigate(actionListingMainFragmentToPostDetailFragment)
+            }
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -54,12 +71,15 @@ class ListingMainFragment : Fragment() {
     }
 }
 
-object ListDiff : DiffUtil.ItemCallback<UIData>() {
-    override fun areItemsTheSame(oldItem: UIData, newItem: UIData): Boolean {
+object ListDiff : DiffUtil.ItemCallback<ListingMainUIData>() {
+    override fun areItemsTheSame(oldItem: ListingMainUIData, newItem: ListingMainUIData): Boolean {
         return oldItem.articleID == newItem.articleID
     }
 
-    override fun areContentsTheSame(oldItem: UIData, newItem: UIData): Boolean {
+    override fun areContentsTheSame(
+        oldItem: ListingMainUIData,
+        newItem: ListingMainUIData
+    ): Boolean {
         return oldItem == newItem
     }
 }

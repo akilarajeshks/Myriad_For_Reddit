@@ -6,18 +6,18 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.zestworks.myriadforreddit.data.BestListPagingSource
+import com.zestworks.myriadforreddit.data.listingMain.ListingMainPageSource
 import com.zestworks.myriadforreddit.data.RedditNetworkService
-import com.zestworks.myriadforreddit.data.UIData
+import com.zestworks.myriadforreddit.data.listingMain.ListingMainUIData
 import dagger.hilt.android.scopes.ActivityScoped
 import kotlinx.coroutines.flow.Flow
 
 @ActivityScoped
 class ListingViewModel(private val redditNetworkService: RedditNetworkService) : ViewModel() {
-    var flow: Flow<PagingData<UIData>> = Pager(
+    var flow: Flow<PagingData<ListingMainUIData>> = Pager(
         PagingConfig(pageSize = 10, initialLoadSize = 10, enablePlaceholders = false)
     ) {
-        val bestListPagingSource = BestListPagingSource(redditNetworkService)
+        val bestListPagingSource = ListingMainPageSource(redditNetworkService)
         bestListPagingSource
     }.flow
         .cachedIn(viewModelScope)

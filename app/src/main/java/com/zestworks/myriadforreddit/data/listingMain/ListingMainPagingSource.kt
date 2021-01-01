@@ -1,11 +1,12 @@
-package com.zestworks.myriadforreddit.data
+package com.zestworks.myriadforreddit.data.listingMain
 
 import androidx.paging.PagingSource
+import com.zestworks.myriadforreddit.data.RedditNetworkService
 
-class BestListPagingSource(
+class ListingMainPageSource(
     private val service: RedditNetworkService,
-) : PagingSource<String, UIData>() {
-    override suspend fun load(params: LoadParams<String>): LoadResult<String, UIData> {
+) : PagingSource<String, ListingMainUIData>() {
+    override suspend fun load(params: LoadParams<String>): LoadResult<String, ListingMainUIData> {
         return try {
             val response = service.getBestListing(
                 10,
@@ -14,14 +15,14 @@ class BestListPagingSource(
             val children = response.body()!!.data
             LoadResult.Page(
                 data = children.children.map {
-                    UIData(
-                        subReddit = "r/${it.data.subreddit}",
-                        subRedditId = it.data.subredditId,
-                        articleID = it.data.id,
+                    ListingMainUIData(
+                        subReddit = it.data.subredditNamePrefixed,
                         selfText = it.data.selftext,
                         thumbnail = it.data.thumbnail,
                         urlOverriddenByDest = it.data.urlOverriddenByDest,
-                        title = it.data.title
+                        title = it.data.title,
+                        permalink = it.data.permalink,
+                        articleID = it.data.id
                     )
                 },
                 prevKey = null,

@@ -9,5 +9,30 @@
         android:id="@+id/listingMainFragment"
         android:name="com.zestworks.myriadforreddit.feature.listingMain.ListingMainFragment"
         android:label="fragment_listing_main"
-        tools:layout="@layout/fragment_listing_main" />
+        tools:layout="@layout/fragment_listing_main">
+        <action
+            android:id="@+id/action_listingMainFragment_to_subredditListingFragment"
+            app:destination="@id/subredditListingFragment" />
+        <action
+            android:id="@+id/action_listingMainFragment_to_postDetailFragment"
+            app:destination="@id/postDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/subredditListingFragment"
+        android:name="com.zestworks.myriadforreddit.feature.subredditListing.SubredditListingFragment"
+        android:label="fragment_subreddit_listing"
+        tools:layout="@layout/fragment_subreddit_listing">
+        <argument
+            android:name="subreddit_name_prefixed"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/postDetailFragment"
+        android:name="com.zestworks.myriadforreddit.feature.postDetail.PostDetailFragment"
+        android:label="fragment_post_detail"
+        tools:layout="@layout/fragment_post_detail">
+        <argument
+            android:name="post_permalink"
+            app:argType="string" />
+    </fragment>
 </navigation>

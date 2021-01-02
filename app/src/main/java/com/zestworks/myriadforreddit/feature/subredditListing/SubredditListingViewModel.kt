@@ -7,8 +7,8 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.zestworks.myriadforreddit.data.RedditNetworkService
-import com.zestworks.myriadforreddit.data.subredditListing.SubredditListingPagingSource
-import com.zestworks.myriadforreddit.data.subredditListing.SubredditListingUIData
+import com.zestworks.myriadforreddit.data.subredditlisting.SubredditListingPagingSource
+import com.zestworks.myriadforreddit.data.subredditlisting.SubredditListingUIData
 import kotlinx.coroutines.flow.Flow
 
 class SubredditListingViewModel(private val redditNetworkService: RedditNetworkService) :

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.zestworks.myriadforreddit.R
-import com.zestworks.myriadforreddit.data.subredditListing.SubredditListingUIData
+import com.zestworks.myriadforreddit.data.subredditlisting.SubredditListingUIData
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -23,7 +23,7 @@ class SubredditListingFragment : Fragment() {
     @Inject
     lateinit var subredditListingViewModel: SubredditListingViewModel
 
-    private val pagingDataAdapter = SubredditListingAdapter(ListDiff)
+    private val pagingDataAdapter = SubredditListingPagingDataAdapter(ListDiff)
     private val args: SubredditListingFragmentArgs by navArgs()
 
     override fun onCreateView(
@@ -31,12 +31,12 @@ class SubredditListingFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_subreddit_listing, container, false)
+        return inflater.inflate(R.layout.fragment_listing_main, container, false)
     }
 
     override fun onStart() {
         super.onStart()
-        requireView().findViewById<RecyclerView>(R.id.subreddit_recycler_view).apply {
+        requireView().findViewById<RecyclerView>(R.id.recycler_list).apply {
             adapter = pagingDataAdapter
             layoutManager = LinearLayoutManager(this@SubredditListingFragment.requireContext())
         }

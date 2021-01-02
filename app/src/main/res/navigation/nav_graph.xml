@@ -21,7 +21,7 @@
         android:id="@+id/subredditListingFragment"
         android:name="com.zestworks.myriadforreddit.feature.subredditListing.SubredditListingFragment"
         android:label="fragment_subreddit_listing"
-        tools:layout="@layout/fragment_subreddit_listing">
+        tools:layout="@layout/fragment_listing_main">
         <argument
             android:name="subreddit_name_prefixed"
             app:argType="string" />
@@ -30,7 +30,7 @@
         android:id="@+id/postDetailFragment"
         android:name="com.zestworks.myriadforreddit.feature.postDetail.PostDetailFragment"
         android:label="fragment_post_detail"
-        tools:layout="@layout/fragment_post_detail">
+        tools:layout="@layout/fragment_listing_main">
         <argument
             android:name="post_permalink"
             app:argType="string" />

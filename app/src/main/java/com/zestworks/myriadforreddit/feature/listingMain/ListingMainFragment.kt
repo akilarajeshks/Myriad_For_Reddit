@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.zestworks.myriadforreddit.R
-import com.zestworks.myriadforreddit.data.listingMain.ListingMainUIData
+import com.zestworks.myriadforreddit.data.listingmain.ListingMainUIData
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.flow.collectLatest
@@ -25,7 +25,7 @@ class ListingMainFragment : Fragment() {
     @Inject
     lateinit var listingViewModel: ListingViewModel
 
-    private val pagingDataAdapter = ListingBestAdapter(ListDiff) {
+    private val pagingDataAdapter = ListingMainPagindDataAdapter(ListDiff) {
         //navigate here
         when (it) {
             Click.SUBREDDIT -> {

@@ -6,9 +6,9 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import com.zestworks.myriadforreddit.data.listingMain.ListingMainPageSource
+import com.zestworks.myriadforreddit.data.listingmain.ListingMainPageSource
 import com.zestworks.myriadforreddit.data.RedditNetworkService
-import com.zestworks.myriadforreddit.data.listingMain.ListingMainUIData
+import com.zestworks.myriadforreddit.data.listingmain.ListingMainUIData
 import dagger.hilt.android.scopes.ActivityScoped
 import kotlinx.coroutines.flow.Flow
 

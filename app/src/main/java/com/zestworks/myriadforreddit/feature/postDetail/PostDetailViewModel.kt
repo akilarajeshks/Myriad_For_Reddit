@@ -7,8 +7,8 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.zestworks.myriadforreddit.data.RedditNetworkService
-import com.zestworks.myriadforreddit.data.postDetail.PostDetailPageSource
-import com.zestworks.myriadforreddit.data.postDetail.PostDetailUIData
+import com.zestworks.myriadforreddit.data.postdetail.PostDetailPageSource
+import com.zestworks.myriadforreddit.data.postdetail.PostDetailUIData
 import kotlinx.coroutines.flow.Flow
 
 class PostDetailViewModel(private val redditNetworkService: RedditNetworkService) : ViewModel(){

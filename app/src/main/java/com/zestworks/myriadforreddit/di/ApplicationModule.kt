@@ -3,7 +3,6 @@ package com.zestworks.myriadforreddit.di
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.zestworks.myriadforreddit.data.RedditNetworkService
-import com.zestworks.myriadforreddit.data.RedditRepository
 import com.zestworks.myriadforreddit.feature.listingMain.ListingViewModel
 import com.zestworks.myriadforreddit.feature.postDetail.PostDetailViewModel
 import com.zestworks.myriadforreddit.feature.subredditListing.SubredditListingViewModel
@@ -23,7 +22,7 @@ object ApplicationModule {
     @Provides
     fun provideRetrofit(@ApplicationContext context: Context): Retrofit {
         val okHttClient = OkHttpClient.Builder()
-            .addInterceptor(ChuckerInterceptor(context))
+            .addInterceptor(ChuckerInterceptor.Builder(context).build())
             .build()
         return Retrofit.Builder()
             .client(okHttClient).baseUrl("https://api.reddit.com")
@@ -34,12 +33,6 @@ object ApplicationModule {
     @Provides
     fun provideNetworkService(retrofit: Retrofit): RedditNetworkService {
         return retrofit.create(RedditNetworkService::class.java)
-    }
-
-
-    @Provides
-    fun provideRepository(redditNetworkService: RedditNetworkService): RedditRepository {
-        return RedditRepository(redditNetworkService)
     }
 
     @Provides

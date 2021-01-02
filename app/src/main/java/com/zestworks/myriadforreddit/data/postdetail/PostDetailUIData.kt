@@ -1,4 +1,4 @@
-package com.zestworks.myriadforreddit.data.postDetail
+package com.zestworks.myriadforreddit.data.postdetail
 
 data class PostDetailUIData(
     val subreddit: String,

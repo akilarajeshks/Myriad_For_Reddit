@@ -1,4 +1,4 @@
-package com.zestworks.myriadforreddit.data.subredditListing
+package com.zestworks.myriadforreddit.data.subredditlisting
 
 import androidx.paging.PagingSource
 import com.zestworks.myriadforreddit.data.RedditNetworkService

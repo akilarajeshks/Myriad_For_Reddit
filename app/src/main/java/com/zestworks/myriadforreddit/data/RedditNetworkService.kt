@@ -1,6 +1,6 @@
 package com.zestworks.myriadforreddit.data
 
-import com.zestworks.myriadforreddit.data.postDetail.PostResponse
+import com.zestworks.myriadforreddit.data.postdetail.PostResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

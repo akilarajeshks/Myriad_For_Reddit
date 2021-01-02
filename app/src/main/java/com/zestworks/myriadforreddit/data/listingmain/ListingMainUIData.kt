@@ -1,4 +1,4 @@
-package com.zestworks.myriadforreddit.data.listingMain
+package com.zestworks.myriadforreddit.data.listingmain
 
 data class ListingMainUIData(
     val subReddit: String,

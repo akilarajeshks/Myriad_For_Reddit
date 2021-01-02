@@ -1,4 +1,4 @@
-package com.zestworks.myriadforreddit.data.postDetail
+package com.zestworks.myriadforreddit.data.postdetail
 
 import androidx.paging.PagingSource
 import com.zestworks.myriadforreddit.data.RedditNetworkService
@@ -46,7 +46,7 @@ class PostDetailPageSource(
                                 messageType = MessageType.COMMENT
                             )
                         }.toMutableList()
-                    data.addAll(page.data)
+                    data.addAll(0,page.data)
                     page = page.copy(data = data)
                 }
             }

@@ -1,10 +1,10 @@
-package com.zestworks.myriadforreddit.data.listingmain
+package com.zestworks.myriadforreddit.feature.home
 
-data class ListingMainUIData(
+data class HomeUIDataItem(
     val subReddit: String,
     val title: String,
-    val articleID :String,
-    val thumbnail: String,
+    val id :String,
+    val thumbnailUrl: String,
     val urlOverriddenByDest: String?,
     //post content below title.
     val selfText: String,

@@ -1,7 +1,6 @@
-package com.zestworks.myriadforreddit.feature.listingMain
+package com.zestworks.myriadforreddit.feature.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,32 +11,30 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.zestworks.myriadforreddit.R
-import com.zestworks.myriadforreddit.data.listingmain.ListingMainUIData
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ListingMainFragment : Fragment() {
+class HomeFragment : Fragment() {
 
     @Inject
-    lateinit var listingViewModel: ListingViewModel
+    lateinit var homeViewModel: HomeViewModel
 
-    private val pagingDataAdapter = ListingMainPagindDataAdapter(ListDiff) {
+    private val pagingDataAdapter = HomePagingDataAdapter(ListDiff) {
         //navigate here
         when (it) {
             Click.SUBREDDIT -> {
                 val actionListingMainFragmentToSubredditListingFragment =
-                    ListingMainFragmentDirections.actionListingMainFragmentToSubredditListingFragment(
+                    HomeFragmentDirections.actionListingMainFragmentToSubredditListingFragment(
                         it.link
                     )
                 findNavController().navigate(actionListingMainFragmentToSubredditListingFragment)
             }
             Click.POST -> {
                 val actionListingMainFragmentToPostDetailFragment =
-                    ListingMainFragmentDirections.actionListingMainFragmentToPostDetailFragment(it.link.drop(1))
+                    HomeFragmentDirections.actionListingMainFragmentToPostDetailFragment(it.link)
                 findNavController().navigate(actionListingMainFragmentToPostDetailFragment)
             }
         }
@@ -55,30 +52,24 @@ class ListingMainFragment : Fragment() {
 
         requireView().findViewById<RecyclerView>(R.id.recycler_list).apply {
             adapter = pagingDataAdapter
-            layoutManager = LinearLayoutManager(this@ListingMainFragment.requireContext())
+            layoutManager = LinearLayoutManager(this@HomeFragment.requireContext())
         }
-        GlobalScope.launch {
-            listingViewModel.flow.collectLatest {
-                pagingDataAdapter.submitData(it)
-            }
-        }
-
         viewLifecycleOwner.lifecycleScope.launch {
-            pagingDataAdapter.loadStateFlow.collectLatest {
-                Log.d("Data adapter state :", "$it")
+            homeViewModel.flow.collect {
+                pagingDataAdapter.submitData(it)
             }
         }
     }
 }
 
-object ListDiff : DiffUtil.ItemCallback<ListingMainUIData>() {
-    override fun areItemsTheSame(oldItem: ListingMainUIData, newItem: ListingMainUIData): Boolean {
-        return oldItem.articleID == newItem.articleID
+object ListDiff : DiffUtil.ItemCallback<HomeUIDataItem>() {
+    override fun areItemsTheSame(oldItem: HomeUIDataItem, newItem: HomeUIDataItem): Boolean {
+        return oldItem.id == newItem.id
     }
 
     override fun areContentsTheSame(
-        oldItem: ListingMainUIData,
-        newItem: ListingMainUIData
+        oldItem: HomeUIDataItem,
+        newItem: HomeUIDataItem
     ): Boolean {
         return oldItem == newItem
     }

@@ -1,4 +1,4 @@
-package com.zestworks.myriadforreddit.feature.listingMain
+package com.zestworks.myriadforreddit.feature.home
 
 import android.graphics.Paint
 import android.view.LayoutInflater
@@ -11,30 +11,29 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.zestworks.myriadforreddit.R
-import com.zestworks.myriadforreddit.data.listingmain.ListingMainUIData
-import com.zestworks.myriadforreddit.feature.listingMain.Click.POST
-import com.zestworks.myriadforreddit.feature.listingMain.Click.SUBREDDIT
+import com.zestworks.myriadforreddit.feature.home.Click.POST
+import com.zestworks.myriadforreddit.feature.home.Click.SUBREDDIT
 
-class ListingMainPagindDataAdapter(
-    diffCallBack: DiffUtil.ItemCallback<ListingMainUIData>,
+class HomePagingDataAdapter(
+    diffCallBack: DiffUtil.ItemCallback<HomeUIDataItem>,
     val onClickListener: (Click) -> Unit
-) : PagingDataAdapter<ListingMainUIData, ChildrenViewHolder>(diffCallBack) {
+) : PagingDataAdapter<HomeUIDataItem, ChildrenViewHolder>(diffCallBack) {
 
     override fun onBindViewHolder(holder: ChildrenViewHolder, position: Int) {
-        getItem(position)?.let { listingData: ListingMainUIData ->
-            Glide.with(holder.itemView.context).load(listingData.thumbnail)
+        getItem(position)?.let { listingDataItem: HomeUIDataItem ->
+            Glide.with(holder.itemView.context).load(listingDataItem.thumbnailUrl)
                 .into(holder.thumbnailImage)
-            holder.subRedditName.text = listingData.subReddit
+            holder.subRedditName.text = listingDataItem.subReddit
             holder.subRedditName.paintFlags = Paint.UNDERLINE_TEXT_FLAG
-            holder.title.text = listingData.title
+            holder.title.text = listingDataItem.title
 
             holder.subRedditName.setOnClickListener {
-                SUBREDDIT.link = listingData.subReddit
+                SUBREDDIT.link = listingDataItem.subReddit
                 onClickListener(SUBREDDIT)
             }
 
             holder.itemView.setOnClickListener {
-                POST.link = listingData.permalink
+                POST.link = listingDataItem.permalink
                 onClickListener(POST)
             }
         }

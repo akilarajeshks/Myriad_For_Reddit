@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/listingMainFragment"
-        android:name="com.zestworks.myriadforreddit.feature.listingMain.ListingMainFragment"
+        android:name="com.zestworks.myriadforreddit.feature.home.HomeFragment"
         android:label="fragment_listing_main"
         tools:layout="@layout/fragment_listing_main">
         <action

@@ -3,7 +3,7 @@ package com.zestworks.myriadforreddit.di
 import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.zestworks.myriadforreddit.data.RedditNetworkService
-import com.zestworks.myriadforreddit.feature.listingMain.ListingViewModel
+import com.zestworks.myriadforreddit.feature.home.HomeViewModel
 import com.zestworks.myriadforreddit.feature.postDetail.PostDetailViewModel
 import com.zestworks.myriadforreddit.feature.subredditListing.SubredditListingViewModel
 import dagger.Module
@@ -36,8 +36,8 @@ object ApplicationModule {
     }
 
     @Provides
-    fun provideListingViewModel(redditNetworkService: RedditNetworkService): ListingViewModel {
-        return ListingViewModel(redditNetworkService)
+    fun provideHomeViewModel(redditNetworkService: RedditNetworkService): HomeViewModel {
+        return HomeViewModel(redditNetworkService)
     }
 
     @Provides

@@ -12,14 +12,14 @@ interface RedditNetworkService {
     suspend fun getBestListing(
         @Query("count") count: Int,
         @Query("after") after: String? = null
-    ): Response<BestListingResponse>
+    ): Response<RedditResponse>
 
     @GET("/{link}")
     suspend fun getSubredditListing(
         @Path("link") link: String,
         @Query("count") count: Int,
         @Query("after") after: String? = null
-    ): Response<BestListingResponse>
+    ): Response<RedditResponse>
 
     @GET("/{link}")
     suspend fun getPostDetail(

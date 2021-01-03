@@ -43,7 +43,7 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_listing_main, container, false)
+        return inflater.inflate(R.layout.fragment_subreddit, container, false)
     }
 
     override fun onStart() {

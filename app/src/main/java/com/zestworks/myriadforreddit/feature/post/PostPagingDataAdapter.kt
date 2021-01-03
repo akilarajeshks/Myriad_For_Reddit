@@ -35,7 +35,7 @@ class PostPagingDataAdapter(itemCallback: DiffUtil.ItemCallback<PostDetailUIData
             )
         }
         return TitleViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.post_detail_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.post_list_item, parent, false)
         )
     }
 

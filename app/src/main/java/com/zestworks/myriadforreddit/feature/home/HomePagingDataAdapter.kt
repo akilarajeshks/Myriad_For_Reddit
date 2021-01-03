@@ -41,7 +41,7 @@ class HomePagingDataAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChildrenViewHolder {
         return ChildrenViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.best_list_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.subreddit_list_item, parent, false)
         )
     }
 }

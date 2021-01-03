@@ -12,6 +12,6 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:listitem="@layout/best_list_item"/>
+        tools:listitem="@layout/subreddit_list_item"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

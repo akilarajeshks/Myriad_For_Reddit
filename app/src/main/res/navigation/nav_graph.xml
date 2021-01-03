@@ -28,7 +28,7 @@
     </fragment>
     <fragment
         android:id="@+id/postDetailFragment"
-        android:name="com.zestworks.myriadforreddit.feature.postDetail.PostDetailFragment"
+        android:name="com.zestworks.myriadforreddit.feature.post.PostFragment"
         android:label="fragment_post_detail"
         tools:layout="@layout/fragment_listing_main">
         <argument

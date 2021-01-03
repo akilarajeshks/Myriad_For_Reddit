@@ -1,4 +1,4 @@
-package com.zestworks.myriadforreddit.feature.postDetail
+package com.zestworks.myriadforreddit.feature.post
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,24 +7,22 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.zestworks.myriadforreddit.R
-import com.zestworks.myriadforreddit.data.postdetail.PostDetailUIData
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class PostDetailFragment : Fragment() {
+class PostFragment : Fragment() {
 
     @Inject
-    lateinit var postDetailViewModel: PostDetailViewModel
+    lateinit var postViewModel: PostViewModel
 
-    private val pagingDataAdapter = PostDetailPagingDataAdapter(ListDiff)
-    private val args: PostDetailFragmentArgs by navArgs()
+    private val pagingDataAdapter = PostPagingDataAdapter(PostDiff)
+    private val args: PostFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,12 +37,12 @@ class PostDetailFragment : Fragment() {
 
         requireView().findViewById<RecyclerView>(R.id.recycler_list).apply {
             adapter = pagingDataAdapter
-            layoutManager = LinearLayoutManager(this@PostDetailFragment.requireContext())
+            layoutManager = LinearLayoutManager(this@PostFragment.requireContext())
         }
 
         lifecycleScope.launch {
-            postDetailViewModel.onUIStart(args.postPermalink)
-            postDetailViewModel.flow.collect {
+            postViewModel.onUIStart(args.postPermalink)
+            postViewModel.flow.collect {
                 pagingDataAdapter.submitData(it)
             }
         }
@@ -52,18 +50,4 @@ class PostDetailFragment : Fragment() {
     }
 }
 
-object ListDiff : DiffUtil.ItemCallback<PostDetailUIData>() {
-    override fun areItemsTheSame(
-        oldItem: PostDetailUIData,
-        newItem: PostDetailUIData
-    ): Boolean {
-        return oldItem.message == newItem.message
-    }
 
-    override fun areContentsTheSame(
-        oldItem: PostDetailUIData,
-        newItem: PostDetailUIData
-    ): Boolean {
-        return oldItem == newItem
-    }
-}

@@ -1,15 +1,15 @@
-package com.zestworks.myriadforreddit.data.postdetail
+package com.zestworks.myriadforreddit.feature.post
 
 import androidx.paging.PagingSource
 import com.zestworks.myriadforreddit.data.RedditNetworkService
 
 
-class PostDetailPageSource(
+class PostPagingSource(
     private val networkService: RedditNetworkService,
     private val postPermaLink: String
 ) :
-    PagingSource<String, PostDetailUIData>() {
-    override suspend fun load(params: LoadParams<String>): LoadResult<String, PostDetailUIData> {
+    PagingSource<String, PostDetailUIDataItem>() {
+    override suspend fun load(params: LoadParams<String>): LoadResult<String, PostDetailUIDataItem> {
         return try {
             val response = networkService.getPostDetail(
                 postPermaLink,
@@ -18,13 +18,13 @@ class PostDetailPageSource(
             )
 
             val childrenResponse = response.body()!!
-            var page: LoadResult.Page<String, PostDetailUIData> =
+            var page: LoadResult.Page<String, PostDetailUIDataItem> =
                 LoadResult.Page(data = mutableListOf(), prevKey = null, nextKey = null)
 
             childrenResponse.forEachIndexed { index, postResponseItem ->
                 if (index == 0) {
                     val data = postResponseItem.data.children.map { children ->
-                        PostDetailUIData(
+                        PostDetailUIDataItem(
                             subreddit = children.data.subredditNamePrefixed,
                             authorName = children.data.author,
                             message = children.data.title,
@@ -39,7 +39,7 @@ class PostDetailPageSource(
                 } else {
                     val data = postResponseItem.data.children.filter { it.data.subredditId != null }
                         .map { children ->
-                            PostDetailUIData(
+                            PostDetailUIDataItem(
                                 subreddit = children.data.subredditNamePrefixed,
                                 authorName = children.data.author,
                                 message = children.data.body,

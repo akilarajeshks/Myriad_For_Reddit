@@ -10,7 +10,6 @@ import com.zestworks.myriadforreddit.data.RedditNetworkService
 import dagger.hilt.android.scopes.ActivityScoped
 import kotlinx.coroutines.flow.Flow
 
-@ActivityScoped
 class HomeViewModel(private val redditNetworkService: RedditNetworkService) : ViewModel() {
     var flow: Flow<PagingData<HomeUIDataItem>> = Pager(
         PagingConfig(pageSize = 10, initialLoadSize = 10, enablePlaceholders = false)

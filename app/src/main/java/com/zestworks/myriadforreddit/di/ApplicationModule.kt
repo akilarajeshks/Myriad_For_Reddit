@@ -4,7 +4,7 @@ import android.content.Context
 import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.zestworks.myriadforreddit.data.RedditNetworkService
 import com.zestworks.myriadforreddit.feature.home.HomeViewModel
-import com.zestworks.myriadforreddit.feature.postDetail.PostDetailViewModel
+import com.zestworks.myriadforreddit.feature.post.PostViewModel
 import com.zestworks.myriadforreddit.feature.subredditListing.SubredditListingViewModel
 import dagger.Module
 import dagger.Provides
@@ -46,7 +46,7 @@ object ApplicationModule {
     }
 
     @Provides
-    fun providePostDetailViewModel(redditNetworkService: RedditNetworkService) : PostDetailViewModel{
-        return PostDetailViewModel(redditNetworkService)
+    fun providePostDetailViewModel(redditNetworkService: RedditNetworkService) : PostViewModel{
+        return PostViewModel(redditNetworkService)
     }
 }

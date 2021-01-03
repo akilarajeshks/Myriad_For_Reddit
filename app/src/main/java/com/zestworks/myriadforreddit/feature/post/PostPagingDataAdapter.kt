@@ -1,4 +1,4 @@
-package com.zestworks.myriadforreddit.feature.postDetail
+package com.zestworks.myriadforreddit.feature.post
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,11 +8,10 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.zestworks.myriadforreddit.R
-import com.zestworks.myriadforreddit.data.postdetail.PostDetailUIData
 
 
-class PostDetailPagingDataAdapter(itemCallback: DiffUtil.ItemCallback<PostDetailUIData>) :
-    PagingDataAdapter<PostDetailUIData, PostDetailViewHolder>(itemCallback) {
+class PostPagingDataAdapter(itemCallback: DiffUtil.ItemCallback<PostDetailUIDataItem>) :
+    PagingDataAdapter<PostDetailUIDataItem, PostDetailViewHolder>(itemCallback) {
     override fun onBindViewHolder(holder: PostDetailViewHolder, position: Int) {
         val item = getItem(position)
         when (holder) {

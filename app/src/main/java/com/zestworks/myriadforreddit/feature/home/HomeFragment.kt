@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.zestworks.myriadforreddit.R
@@ -22,7 +21,7 @@ class HomeFragment : Fragment() {
     @Inject
     lateinit var homeViewModel: HomeViewModel
 
-    private val pagingDataAdapter = HomePagingDataAdapter(ListDiff) {
+    private val pagingDataAdapter = HomePagingDataAdapter(HomeDiff) {
         //navigate here
         when (it) {
             Click.SUBREDDIT -> {
@@ -62,15 +61,4 @@ class HomeFragment : Fragment() {
     }
 }
 
-object ListDiff : DiffUtil.ItemCallback<HomeUIDataItem>() {
-    override fun areItemsTheSame(oldItem: HomeUIDataItem, newItem: HomeUIDataItem): Boolean {
-        return oldItem.id == newItem.id
-    }
 
-    override fun areContentsTheSame(
-        oldItem: HomeUIDataItem,
-        newItem: HomeUIDataItem
-    ): Boolean {
-        return oldItem == newItem
-    }
-}

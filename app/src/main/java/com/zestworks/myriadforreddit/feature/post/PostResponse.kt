@@ -1,4 +1,4 @@
-package com.zestworks.myriadforreddit.data.postdetail
+package com.zestworks.myriadforreddit.feature.post
 
 import com.google.gson.JsonPrimitive
 import com.google.gson.annotations.SerializedName

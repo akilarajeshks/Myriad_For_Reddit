@@ -1,4 +1,4 @@
-package com.zestworks.myriadforreddit.feature.subredditListing
+package com.zestworks.myriadforreddit.feature.subreddit
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,24 +7,22 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.navArgs
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.zestworks.myriadforreddit.R
-import com.zestworks.myriadforreddit.data.subredditlisting.SubredditListingUIData
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class SubredditListingFragment : Fragment() {
+class SubredditFragment : Fragment() {
 
     @Inject
-    lateinit var subredditListingViewModel: SubredditListingViewModel
+    lateinit var subredditViewModel: SubredditViewModel
 
-    private val pagingDataAdapter = SubredditListingPagingDataAdapter(ListDiff)
-    private val args: SubredditListingFragmentArgs by navArgs()
+    private val pagingDataAdapter = SubredditListingPagingDataAdapter(SubredditDiff)
+    private val args: SubredditFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,30 +36,16 @@ class SubredditListingFragment : Fragment() {
         super.onStart()
         requireView().findViewById<RecyclerView>(R.id.recycler_list).apply {
             adapter = pagingDataAdapter
-            layoutManager = LinearLayoutManager(this@SubredditListingFragment.requireContext())
+            layoutManager = LinearLayoutManager(this@SubredditFragment.requireContext())
         }
 
         lifecycleScope.launch {
-            subredditListingViewModel.onUIStart(args.subredditNamePrefixed)
-            subredditListingViewModel.flow.collect {
+            subredditViewModel.onUIStart(args.subredditNamePrefixed)
+            subredditViewModel.flow.collect {
                 pagingDataAdapter.submitData(it)
             }
         }
     }
 }
 
-object ListDiff : DiffUtil.ItemCallback<SubredditListingUIData>() {
-    override fun areItemsTheSame(
-        oldItem: SubredditListingUIData,
-        newItem: SubredditListingUIData
-    ): Boolean {
-        return oldItem.title == newItem.title
-    }
 
-    override fun areContentsTheSame(
-        oldItem: SubredditListingUIData,
-        newItem: SubredditListingUIData
-    ): Boolean {
-        return oldItem == newItem
-    }
-}

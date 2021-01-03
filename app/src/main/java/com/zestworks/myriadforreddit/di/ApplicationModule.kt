@@ -5,7 +5,7 @@ import com.chuckerteam.chucker.api.ChuckerInterceptor
 import com.zestworks.myriadforreddit.data.RedditNetworkService
 import com.zestworks.myriadforreddit.feature.home.HomeViewModel
 import com.zestworks.myriadforreddit.feature.post.PostViewModel
-import com.zestworks.myriadforreddit.feature.subredditListing.SubredditListingViewModel
+import com.zestworks.myriadforreddit.feature.subreddit.SubredditViewModel
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -41,8 +41,8 @@ object ApplicationModule {
     }
 
     @Provides
-    fun provideSubredditListingViewModel(redditNetworkService: RedditNetworkService): SubredditListingViewModel {
-        return SubredditListingViewModel(redditNetworkService)
+    fun provideSubredditListingViewModel(redditNetworkService: RedditNetworkService): SubredditViewModel {
+        return SubredditViewModel(redditNetworkService)
     }
 
     @Provides

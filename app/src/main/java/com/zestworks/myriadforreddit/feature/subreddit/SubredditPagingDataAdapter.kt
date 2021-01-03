@@ -1,4 +1,4 @@
-package com.zestworks.myriadforreddit.feature.subredditListing
+package com.zestworks.myriadforreddit.feature.subreddit
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,10 +8,9 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.zestworks.myriadforreddit.R
-import com.zestworks.myriadforreddit.data.subredditlisting.SubredditListingUIData
 
-class SubredditListingPagingDataAdapter(itemCallback: DiffUtil.ItemCallback<SubredditListingUIData>) :
-    PagingDataAdapter<SubredditListingUIData, SubredditVewHolder>(itemCallback) {
+class SubredditListingPagingDataAdapter(itemCallback: DiffUtil.ItemCallback<SubredditUIDataItem>) :
+    PagingDataAdapter<SubredditUIDataItem, SubredditVewHolder>(itemCallback) {
     override fun onBindViewHolder(holder: SubredditVewHolder, position: Int) {
         val item = getItem(position)
         holder.title.text = item!!.title

@@ -1,4 +1,4 @@
-package com.zestworks.myriadforreddit.feature.subredditListing
+package com.zestworks.myriadforreddit.feature.subreddit
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,20 +7,18 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.zestworks.myriadforreddit.data.RedditNetworkService
-import com.zestworks.myriadforreddit.data.subredditlisting.SubredditListingPagingSource
-import com.zestworks.myriadforreddit.data.subredditlisting.SubredditListingUIData
 import kotlinx.coroutines.flow.Flow
 
-class SubredditListingViewModel(private val redditNetworkService: RedditNetworkService) :
+class SubredditViewModel(private val redditNetworkService: RedditNetworkService) :
     ViewModel() {
-    lateinit var flow: Flow<PagingData<SubredditListingUIData>>
+    lateinit var flow: Flow<PagingData<SubredditUIDataItem>>
 
     fun onUIStart(subredditLink: String) {
         flow = Pager(
             PagingConfig(pageSize = 10, initialLoadSize = 10, enablePlaceholders = false)
         ) {
             val bestListPagingSource =
-                SubredditListingPagingSource(redditNetworkService, subredditLink)
+                SubredditPagingSource(redditNetworkService, subredditLink)
             bestListPagingSource
         }.flow
             .cachedIn(viewModelScope)

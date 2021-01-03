@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/subredditListingFragment"
-        android:name="com.zestworks.myriadforreddit.feature.subredditListing.SubredditListingFragment"
+        android:name="com.zestworks.myriadforreddit.feature.subreddit.SubredditFragment"
         android:label="fragment_subreddit_listing"
         tools:layout="@layout/fragment_listing_main">
         <argument

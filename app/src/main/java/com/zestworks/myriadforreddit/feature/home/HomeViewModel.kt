@@ -7,7 +7,6 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import com.zestworks.myriadforreddit.data.RedditNetworkService
-import dagger.hilt.android.scopes.ActivityScoped
 import kotlinx.coroutines.flow.Flow
 
 class HomeViewModel(private val redditNetworkService: RedditNetworkService) : ViewModel() {

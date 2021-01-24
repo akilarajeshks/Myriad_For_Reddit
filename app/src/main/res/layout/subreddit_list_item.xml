@@ -4,50 +4,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:cardElevation="8dp"
-    app:cardCornerRadius="8dp"
     android:layout_margin="8dp"
     android:clickable="true"
-    android:focusable="true">
+    android:focusable="true"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="8dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_margin="8dp"
-        >
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/subreddit_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textStyle="italic"
-            android:textColor="@color/blue"
+            android:clickable="true"
+            android:focusable="true"
+            style="@style/TextAppearance.MaterialComponents.Body1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="r/subreddit"
-            android:clickable="true"
-            android:focusable="true"/>
+            tools:text="r/subreddit" />
 
         <TextView
             android:id="@+id/title_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="8dp"
-            android:textSize="16sp"
+            style="@style/TextAppearance.MaterialComponents.Subtitle2"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/subreddit_name"
-            app:layout_constraintEnd_toEndOf="parent"
             tools:text="Title goes here" />
 
         <ImageView
             android:id="@+id/thumbnail_image"
             android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_margin="24dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            tools:background="@tools:sample/backgrounds/scenic"
+            tools:layout_height="200dp"
             android:contentDescription="@string/thumbnail_image"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

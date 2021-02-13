@@ -18,7 +18,7 @@ class SubredditListingPagingDataAdapter(itemCallback: DiffUtil.ItemCallback<Subr
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SubredditVewHolder {
         return SubredditVewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.subreddit_list_item, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.image_type_list_item, parent, false)
         )
     }
 }
